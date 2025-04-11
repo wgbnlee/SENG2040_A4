@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block scripts %}
-<script src="{% static 'posts/main.js' %}" defer></script>
+    <script src="{% static 'posts/main.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block title %}
@@ -10,7 +10,7 @@ posts
 {% endblock title %}
 
 {% block content %}
-{% for obj in qs %}
-{{obj.title}} - {{obj.body}} <br>
-{% endfor %}
+    {% for obj in qs %}
+        {{obj.title}} - {{obj.body}} <br>
+    {% endfor %}
 {% endblock content %}
