@@ -1,21 +1,9 @@
 console.log('hello world')
 
-const helloWorldBox = document.getElementById('hello-world')
 const postsBox = document.getElementById('posts-box')
 const spinnerBox = document.getElementById('spinner-box')
-
-
-$.ajax({
-    type: 'GET',
-    url: '/hello-world/',
-    success: function(response){
-        console.log('success', response.text)
-        helloWorldBox.textContent = response.text
-    },
-    error: function(error){
-        console.log('error', error)
-    }
-})
+const loadBtn = document.getElementById('load-btn')
+const endBox = document.getElementById('end-box')
 
 let visible = 3
 
@@ -49,10 +37,26 @@ const getData = () => {
                         </div>
                     `
                 });
-            }, 1000)
+            }, 100)
+            console.log(response.size)
+            if (response.size === 0) {
+                endBox.textContent = 'No posts added yet...'
+            }
+            else if (response.size <= visible) {
+                loadBtn.classList.add('not-visible')
+                endBox.textContent = 'No more posts to load...'
+            }
         },
         error: function(error){
             console.log(error)
         }
     })
 }
+
+loadBtn.addEventListener('click', () =>{
+    spinnerBox.classList.remove('not-visible')
+    visible += 3
+    getData()
+})
+
+getData()
