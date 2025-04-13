@@ -56,10 +56,10 @@
 
     <!-- Carousel -->
     {% if obj.get_photos %}
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide mb-2" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for p in obj.get_photos %}
-                <div class="carousel-item active">
+                <div class="carousel-item {% if forloop.counter == 1%}active{% endif %}">
                     <img src="{{p.image.url}}" class="d-block w-100" alt="photo {{obj.pk}}">
                 </div>
             {% endfor %}
